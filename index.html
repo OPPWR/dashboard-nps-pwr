@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PWR Gestão — NPS Dashboard 2026</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#05244F;
+  --mid:#273A76;
+  --light:#3C58B4;
+  --orange:#FF5B00;
+  --bg:#f4f6fb;
+  --s1:#ffffff;
+  --s2:#eef1f8;
+  --br:#dde3f0;
+  --mu:#6b7a99;
+}
+html,body{background:var(--bg);color:var(--navy);font-family:'Segoe UI',Arial,Helvetica,sans-serif;height:100%}
+body{display:flex;flex-direction:column;min-height:100vh}
+
+/* HEADER */
+.hdr{background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:14px 24px;flex-shrink:0}
+.hdr-left{display:flex;align-items:center;gap:14px}
+.logo{display:flex;align-items:center;gap:8px}
+.logo-mark{width:30px;height:30px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.logo-mark svg{width:16px;height:16px}
+.logo-text{display:flex;align-items:baseline;gap:5px;font-weight:800;font-size:17px;letter-spacing:.5px}
+.logo-text .pwr{color:#fff}
+.logo-text .gestao{color:#9fb0d6;font-weight:700;font-size:11px;letter-spacing:1px}
+.hdr-title{font-size:11.5px;letter-spacing:1.6px;text-transform:uppercase;color:#c3cfe8;font-weight:600;border-left:1px solid rgba(255,255,255,.2);padding-left:14px}
+.hdr-right{display:flex;gap:8px}
+.leg{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:700;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:20px;padding:4px 12px;color:#fff}
+.leg .dot{width:8px;height:8px;border-radius:50%}
+
+/* BODY GRID */
+.content{display:grid;grid-template-columns:170px 1fr 430px;gap:12px;padding:16px 20px;flex:1;min-height:0}
+
+.card{background:var(--s1);border:1px solid var(--br);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column}
+.ct{font-size:10.5px;letter-spacing:1.3px;text-transform:uppercase;color:var(--mu);font-weight:700}
+.ct-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.ct-sub{font-size:9.5px;color:var(--mu);font-weight:600}
+
+/* COL 1 - NPS CARD */
+.nps-card{background:var(--navy);color:#fff;border:none;gap:0}
+.nps-label{font-size:9.5px;letter-spacing:1.5px;text-transform:uppercase;color:#9fb0d6;font-weight:700;text-align:center}
+.nps-score{font-size:56px;font-weight:800;line-height:1;color:var(--orange);text-align:center;margin:2px 0 6px}
+.nps-tag{background:rgba(255,91,0,.18);border:1px solid rgba(255,91,0,.4);border-radius:20px;padding:3px 10px;font-size:10px;color:var(--orange);font-weight:700;letter-spacing:.5px;text-align:center;margin:0 auto 12px;width:fit-content}
+.segs{display:flex;gap:5px;margin-bottom:14px}
+.seg{flex:1;background:rgba(255,255,255,.06);border-radius:8px;padding:6px 2px;text-align:center}
+.seg-v{font-size:19px;font-weight:800;line-height:1}
+.seg-l{font-size:7px;text-transform:uppercase;letter-spacing:.6px;color:#9fb0d6;margin-top:3px;font-weight:700}
+.evo-t{font-size:8.5px;letter-spacing:1px;text-transform:uppercase;color:#9fb0d6;font-weight:700;margin-bottom:8px}
+.evo-r{display:flex;align-items:center;gap:6px;margin-bottom:6px}
+.evo-y{font-size:10px;font-weight:800;width:28px;flex-shrink:0;color:#c3cfe8}
+.evo-track{flex:1;height:16px;background:rgba(255,255,255,.08);border-radius:4px;overflow:hidden}
+.evo-bar{height:100%;border-radius:4px;display:flex;align-items:center;padding-left:6px;font-size:10px;font-weight:800;color:#fff}
+.badge{display:flex;align-items:center;justify-content:center;gap:4px;background:rgba(255,91,0,.14);border:1px solid rgba(255,91,0,.3);border-radius:20px;padding:5px 8px;font-size:9.5px;color:var(--orange);font-weight:700;margin-top:12px;text-align:center}
+.zone{font-size:9px;color:#9fb0d6;text-align:center;margin-top:8px;font-weight:600}
+
+/* COL 2 - CHART */
+.chart-wrap{flex:1;min-height:0;position:relative}
+
+/* COL 3 */
+.col3{display:flex;flex-direction:column;gap:12px}
+.prop-card{flex-shrink:0}
+.prop-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--br)}
+.prop-row:last-child{border-bottom:none;padding-bottom:0}
+.prop-year{font-size:11px;font-weight:800;width:64px;flex-shrink:0;color:var(--navy)}
+.prop-year span{display:block;font-size:8px;color:var(--mu);font-weight:600}
+.prop-vals{display:flex;gap:16px;flex:1;justify-content:flex-end}
+.prop-val{text-align:center}
+.prop-val b{display:block;font-size:13px;font-weight:800;color:var(--navy)}
+.prop-val small{font-size:7.5px;text-transform:uppercase;color:var(--mu);letter-spacing:.5px;font-weight:700}
+
+.themes-card{flex:1;min-height:0;display:flex;flex-direction:column}
+.theme-row{margin-bottom:10px}
+.theme-row:last-child{margin-bottom:0}
+.theme-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px}
+.theme-name{font-size:11px;font-weight:700;color:var(--navy)}
+.theme-n{font-size:9px;color:var(--mu);font-weight:600}
+.theme-pct{font-size:12px;font-weight:800}
+.theme-track{height:6px;background:var(--s2);border-radius:4px;overflow:hidden}
+.theme-bar{height:100%;border-radius:4px}
+.themes-footer{margin-top:auto;padding-top:10px;font-size:8.5px;letter-spacing:.5px;color:var(--mu);text-transform:uppercase;font-weight:700;text-align:right}
+
+/* FOOTER */
+.ftr{background:var(--s1);border-top:1px solid var(--br);padding:10px 24px;text-align:center;font-size:10px;color:var(--mu);font-weight:600;flex-shrink:0}
+</style>
+</head>
+<body>
+<div class="slide" style="display:flex;flex-direction:column;min-height:100vh">
+
+  <div class="hdr">
+    <div class="hdr-left">
+      <div class="logo">
+        <div class="logo-mark">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M8 4L18 12L8 20" stroke="#FF5B00" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="logo-text"><span class="pwr">pwr</span><span class="gestao">GESTÃO</span></div>
+      </div>
+      <div class="hdr-title">NPS Dashboard · Histórico de Satisfação &amp; Indicação · Atualizado Agosto 2026</div>
+    </div>
+    <div class="hdr-right">
+      <div class="leg"><span class="dot" style="background:var(--light)"></span>2024</div>
+      <div class="leg"><span class="dot" style="background:var(--orange)"></span>2025</div>
+      <div class="leg"><span class="dot" style="background:var(--mid)"></span>2026</div>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- COL 1 : NPS CARD -->
+    <div class="card nps-card">
+      <div class="nps-label">Nota NPS</div>
+      <div class="nps-score">85</div>
+      <div class="nps-tag">2026 · Jan–Ago</div>
+      <div class="segs">
+        <div class="seg"><div class="seg-v" style="color:var(--orange)">130</div><div class="seg-l">Prom.</div></div>
+        <div class="seg"><div class="seg-v" style="color:#c3cfe8">18</div><div class="seg-l">Neutr.</div></div>
+        <div class="seg"><div class="seg-v" style="color:#f95f5f">2</div><div class="seg-l">Detrat.</div></div>
+      </div>
+      <div class="evo-t">NPS Jan–Ago por ano</div>
+      <div class="evo-r">
+        <div class="evo-y">2024</div>
+        <div class="evo-track"><div class="evo-bar" style="width:77%;background:var(--light)">77</div></div>
+      </div>
+      <div class="evo-r">
+        <div class="evo-y">2025</div>
+        <div class="evo-track"><div class="evo-bar" style="width:81%;background:var(--orange)">81</div></div>
+      </div>
+      <div class="evo-r">
+        <div class="evo-y">2026</div>
+        <div class="evo-track"><div class="evo-bar" style="width:85%;background:var(--mid)">85</div></div>
+      </div>
+      <div class="badge">↑ +8 pts vs 2024 (Jan–Ago)</div>
+      <div class="zone">Zona de Excelência (&gt;75)</div>
+    </div>
+
+    <!-- COL 2 : CHART -->
+    <div class="card">
+      <div class="ct-row"><div class="ct">Histórico mensal de respostas</div></div>
+      <div class="chart-wrap"><canvas id="chartMensal"></canvas></div>
+    </div>
+
+    <!-- COL 3 -->
+    <div class="col3">
+      <div class="card prop-card">
+        <div class="ct-row"><div class="ct">Detalhamento Jan–Ago · Proporção por tipo</div></div>
+        <div class="prop-row">
+          <div class="prop-year">2024<span>Jan–Ago</span></div>
+          <div class="prop-vals">
+            <div class="prop-val"><b style="color:var(--light)">82%</b><small>Prom.</small></div>
+            <div class="prop-val"><b>13%</b><small>Neutr.</small></div>
+            <div class="prop-val"><b>5%</b><small>Detrat.</small></div>
+          </div>
+        </div>
+        <div class="prop-row">
+          <div class="prop-year">2025<span>Jan–Ago</span></div>
+          <div class="prop-vals">
+            <div class="prop-val"><b style="color:var(--orange)">85%</b><small>Prom.</small></div>
+            <div class="prop-val"><b>12%</b><small>Neutr.</small></div>
+            <div class="prop-val"><b>3%</b><small>Detrat.</small></div>
+          </div>
+        </div>
+        <div class="prop-row">
+          <div class="prop-year">2026<span>Jan–Ago</span></div>
+          <div class="prop-vals">
+            <div class="prop-val"><b style="color:var(--mid)">87%</b><small>Prom.</small></div>
+            <div class="prop-val"><b>12%</b><small>Neutr.</small></div>
+            <div class="prop-val"><b>1%</b><small>Detrat.</small></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card themes-card">
+        <div class="ct-row">
+          <div class="ct">Pontos de melhoria · 2026 · Q5+Q7</div>
+          <div class="ct-sub">78 menções · 150 resp.</div>
+        </div>
+
+        <div class="theme-row">
+          <div class="theme-top"><span class="theme-name">Falta de presença / acompanhamento</span><span class="theme-n">17 menções</span><span class="theme-pct" style="color:var(--mid)">22%</span></div>
+          <div class="theme-track"><div class="theme-bar" style="width:22%;background:var(--mid)"></div></div>
+        </div>
+        <div class="theme-row">
+          <div class="theme-top"><span class="theme-name">Turnover / troca de consultores</span><span class="theme-n">16 menções</span><span class="theme-pct" style="color:var(--orange)">21%</span></div>
+          <div class="theme-track"><div class="theme-bar" style="width:21%;background:var(--orange)"></div></div>
+        </div>
+        <div class="theme-row">
+          <div class="theme-top"><span class="theme-name">Atrasos / prazo de entrega</span><span class="theme-n">14 menções</span><span class="theme-pct" style="color:#622000">18%</span></div>
+          <div class="theme-track"><div class="theme-bar" style="width:18%;background:#622000"></div></div>
+        </div>
+        <div class="theme-row">
+          <div class="theme-top"><span class="theme-name">Falta de devolutiva / comunicação</span><span class="theme-n">11 menções</span><span class="theme-pct" style="color:#9A3500">14%</span></div>
+          <div class="theme-track"><div class="theme-bar" style="width:14%;background:#9A3500"></div></div>
+        </div>
+        <div class="theme-row">
+          <div class="theme-top"><span class="theme-name">Senioridade / qualidade dos consultores</span><span class="theme-n">7 menções</span><span class="theme-pct" style="color:var(--light)">9%</span></div>
+          <div class="theme-track"><div class="theme-bar" style="width:9%;background:var(--light)"></div></div>
+        </div>
+        <div class="theme-row">
+          <div class="theme-top"><span class="theme-name">Alinhamento inicial com o negócio</span><span class="theme-n">7 menções</span><span class="theme-pct" style="color:#1d6fbf">9%</span></div>
+          <div class="theme-track"><div class="theme-bar" style="width:9%;background:#1d6fbf"></div></div>
+        </div>
+        <div class="theme-row">
+          <div class="theme-top"><span class="theme-name">Preço / custo elevado</span><span class="theme-n">4 menções</span><span class="theme-pct" style="color:#7c3aed">5%</span></div>
+          <div class="theme-track"><div class="theme-bar" style="width:5%;background:#7c3aed"></div></div>
+        </div>
+        <div class="theme-row">
+          <div class="theme-top"><span class="theme-name">Encerramento fraco do projeto</span><span class="theme-n">2 menções</span><span class="theme-pct" style="color:var(--mu)">3%</span></div>
+          <div class="theme-track"><div class="theme-bar" style="width:3%;background:var(--mu)"></div></div>
+        </div>
+
+        <div class="themes-footer">Base: 150 respostas de 2026 · Q5 e Q7</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="ftr">Base total: 573 respostas · 2020–2026</div>
+
+</div>
+
+<script>
+const MESES = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
+const d24=[4,19,15,18,6,18,10,12,7,11,7,18];
+const d25=[4,12,12,8,9,9,14,23,26,21,15,15];
+const d26=[15,24,15,24,22,17,17,16,null,null,null,null];
+
+new Chart(document.getElementById('chartMensal'), {
+  type: 'line',
+  data: {
+    labels: MESES,
+    datasets: [
+      { label:'2024', data:d24, borderColor:'#3C58B4', backgroundColor:'#3C58B4', pointRadius:3, pointBackgroundColor:'#3C58B4', borderWidth:2.5, tension:.35, spanGaps:true },
+      { label:'2025', data:d25, borderColor:'#FF5B00', backgroundColor:'#FF5B00', pointRadius:3, pointBackgroundColor:'#FF5B00', borderWidth:2.5, tension:.35, spanGaps:true },
+      { label:'2026', data:d26, borderColor:'#273A76', backgroundColor:'#273A76', pointRadius:3, pointBackgroundColor:'#273A76', borderWidth:2.5, tension:.35, spanGaps:true }
+    ]
+  },
+  options: {
+    responsive:true, maintainAspectRatio:false,
+    plugins:{ legend:{ display:false }, tooltip:{ mode:'index', intersect:false } },
+    scales:{
+      y:{ beginAtZero:true, suggestedMax:30, grid:{ color:'#eef1f8' }, ticks:{ color:'#6b7a99', font:{ size:11 } } },
+      x:{ grid:{ display:false }, ticks:{ color:'#6b7a99', font:{ size:11 } } }
+    }
+  }
+});
+</script>
+</body>
+</html>
