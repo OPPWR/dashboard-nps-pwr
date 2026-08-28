@@ -20,6 +20,7 @@
 }
 html,body{background:var(--bg);color:var(--navy);font-family:'Segoe UI',Arial,Helvetica,sans-serif;height:100%}
 body{display:flex;flex-direction:column;min-height:100vh}
+.slide{display:flex;flex-direction:column;min-height:100vh}
 
 /* HEADER */
 .hdr{background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:14px 24px;flex-shrink:0}
@@ -31,67 +32,83 @@ body{display:flex;flex-direction:column;min-height:100vh}
 .logo-text .pwr{color:#fff}
 .logo-text .gestao{color:#9fb0d6;font-weight:700;font-size:11px;letter-spacing:1px}
 .hdr-title{font-size:11.5px;letter-spacing:1.6px;text-transform:uppercase;color:#c3cfe8;font-weight:600;border-left:1px solid rgba(255,255,255,.2);padding-left:14px}
-.hdr-right{display:flex;gap:8px}
-.leg{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:700;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:20px;padding:4px 12px;color:#fff}
-.leg .dot{width:8px;height:8px;border-radius:50%}
+.hdr-badge{font-size:10.5px;font-weight:700;background:rgba(255,91,0,.15);border:1px solid rgba(255,91,0,.35);border-radius:20px;padding:5px 14px;color:var(--orange);letter-spacing:.4px}
 
 /* BODY GRID */
-.content{display:grid;grid-template-columns:170px 1fr 430px;gap:12px;padding:16px 20px;flex:1;min-height:0}
+.content{display:grid;grid-template-columns:260px 300px 1fr;align-items:start;gap:14px;padding:16px 20px;flex:1}
 
 .card{background:var(--s1);border:1px solid var(--br);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column}
 .ct{font-size:10.5px;letter-spacing:1.3px;text-transform:uppercase;color:var(--mu);font-weight:700}
-.ct-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
-.ct-sub{font-size:9.5px;color:var(--mu);font-weight:600}
+.ct-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;gap:10px}
+.ct-sub{font-size:9.5px;color:var(--mu);font-weight:600;flex-shrink:0}
 
 /* COL 1 - NPS CARD */
 .nps-card{background:var(--navy);color:#fff;border:none;gap:0}
-.nps-label{font-size:9.5px;letter-spacing:1.5px;text-transform:uppercase;color:#9fb0d6;font-weight:700;text-align:center}
-.nps-score{font-size:56px;font-weight:800;line-height:1;color:var(--orange);text-align:center;margin:2px 0 6px}
-.nps-tag{background:rgba(255,91,0,.18);border:1px solid rgba(255,91,0,.4);border-radius:20px;padding:3px 10px;font-size:10px;color:var(--orange);font-weight:700;letter-spacing:.5px;text-align:center;margin:0 auto 12px;width:fit-content}
-.segs{display:flex;gap:5px;margin-bottom:14px}
-.seg{flex:1;background:rgba(255,255,255,.06);border-radius:8px;padding:6px 2px;text-align:center}
-.seg-v{font-size:19px;font-weight:800;line-height:1}
-.seg-l{font-size:7px;text-transform:uppercase;letter-spacing:.6px;color:#9fb0d6;margin-top:3px;font-weight:700}
-.evo-t{font-size:8.5px;letter-spacing:1px;text-transform:uppercase;color:#9fb0d6;font-weight:700;margin-bottom:8px}
-.evo-r{display:flex;align-items:center;gap:6px;margin-bottom:6px}
-.evo-y{font-size:10px;font-weight:800;width:28px;flex-shrink:0;color:#c3cfe8}
-.evo-track{flex:1;height:16px;background:rgba(255,255,255,.08);border-radius:4px;overflow:hidden}
-.evo-bar{height:100%;border-radius:4px;display:flex;align-items:center;padding-left:6px;font-size:10px;font-weight:800;color:#fff}
-.badge{display:flex;align-items:center;justify-content:center;gap:4px;background:rgba(255,91,0,.14);border:1px solid rgba(255,91,0,.3);border-radius:20px;padding:5px 8px;font-size:9.5px;color:var(--orange);font-weight:700;margin-top:12px;text-align:center}
-.zone{font-size:9px;color:#9fb0d6;text-align:center;margin-top:8px;font-weight:600}
+.nps-label{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#9fb0d6;font-weight:700;text-align:center}
+.nps-score{font-size:64px;font-weight:800;line-height:1;color:var(--orange);text-align:center;margin:4px 0 8px}
+.nps-tag{background:rgba(255,91,0,.18);border:1px solid rgba(255,91,0,.4);border-radius:20px;padding:4px 12px;font-size:10.5px;color:var(--orange);font-weight:700;letter-spacing:.5px;text-align:center;margin:0 auto 14px;width:fit-content}
+.segs{display:flex;gap:6px;margin-bottom:16px}
+.seg{flex:1;background:rgba(255,255,255,.06);border-radius:8px;padding:8px 2px;text-align:center}
+.seg-v{font-size:21px;font-weight:800;line-height:1}
+.seg-l{font-size:7.5px;text-transform:uppercase;letter-spacing:.6px;color:#9fb0d6;margin-top:4px;font-weight:700}
+.evo-t{font-size:9px;letter-spacing:1px;text-transform:uppercase;color:#9fb0d6;font-weight:700;margin-bottom:9px}
+.evo-r{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+.evo-y{font-size:10.5px;font-weight:800;width:30px;flex-shrink:0;color:#c3cfe8}
+.evo-track{flex:1;height:18px;background:rgba(255,255,255,.08);border-radius:4px;overflow:hidden}
+.evo-bar{height:100%;border-radius:4px;display:flex;align-items:center;padding-left:7px;font-size:10.5px;font-weight:800;color:#fff}
+.badge{display:flex;align-items:center;justify-content:center;gap:4px;background:rgba(255,91,0,.14);border:1px solid rgba(255,91,0,.3);border-radius:20px;padding:6px 8px;font-size:10px;color:var(--orange);font-weight:700;margin-top:14px;text-align:center}
+.zone{font-size:9.5px;color:#9fb0d6;text-align:center;margin-top:9px;font-weight:600}
 
 /* COL 2 - CHART */
-.chart-wrap{flex:1;min-height:0;position:relative}
+.chart-legend{display:flex;gap:16px;margin-bottom:10px;flex-wrap:wrap}
+.chart-legend-item{display:flex;align-items:center;gap:6px;font-size:10.5px;font-weight:700;color:var(--navy)}
+.chart-legend-key{width:16px;height:3px;border-radius:2px;flex-shrink:0}
+.chart-wrap{height:300px;position:relative;flex-shrink:0}
 
 /* COL 3 */
-.col3{display:flex;flex-direction:column;gap:12px}
-.prop-card{flex-shrink:0}
-.prop-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--br)}
-.prop-row:last-child{border-bottom:none;padding-bottom:0}
-.prop-year{font-size:11px;font-weight:800;width:64px;flex-shrink:0;color:var(--navy)}
-.prop-year span{display:block;font-size:8px;color:var(--mu);font-weight:600}
-.prop-vals{display:flex;gap:16px;flex:1;justify-content:flex-end}
-.prop-val{text-align:center}
-.prop-val b{display:block;font-size:13px;font-weight:800;color:var(--navy)}
-.prop-val small{font-size:7.5px;text-transform:uppercase;color:var(--mu);letter-spacing:.5px;font-weight:700}
+.col3{display:flex;flex-direction:column;gap:14px}
 
-.themes-card{flex:1;min-height:0;display:flex;flex-direction:column}
-.theme-row{margin-bottom:10px}
+.prop-row{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--br)}
+.prop-row:last-child{border-bottom:none;padding-bottom:0}
+.prop-year{width:98px;flex-shrink:0;display:flex;align-items:center;gap:7px}
+.prop-year .dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+.prop-year-txt b{display:block;font-size:12px;font-weight:800;color:var(--navy)}
+.prop-year-txt small{display:block;font-size:8px;color:var(--mu);font-weight:600;margin-top:1px}
+.prop-vals{display:flex;gap:18px;flex:1;justify-content:flex-end}
+.prop-val{text-align:center}
+.prop-val b{display:block;font-size:17px;font-weight:800;color:var(--navy);line-height:1}
+.prop-val small{font-size:7.5px;text-transform:uppercase;color:var(--mu);letter-spacing:.4px;font-weight:700;display:block;margin-top:3px}
+
+.themes-card{flex:1;border-top:3px solid var(--orange)}
+.themes-card .ct{font-size:11.5px;color:var(--navy);font-weight:800}
+.theme-row{margin-bottom:12px}
 .theme-row:last-child{margin-bottom:0}
-.theme-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px}
-.theme-name{font-size:11px;font-weight:700;color:var(--navy)}
-.theme-n{font-size:9px;color:var(--mu);font-weight:600}
-.theme-pct{font-size:12px;font-weight:800}
-.theme-track{height:6px;background:var(--s2);border-radius:4px;overflow:hidden}
-.theme-bar{height:100%;border-radius:4px}
-.themes-footer{margin-top:auto;padding-top:10px;font-size:8.5px;letter-spacing:.5px;color:var(--mu);text-transform:uppercase;font-weight:700;text-align:right}
+.theme-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px;gap:8px}
+.theme-name{font-size:12px;font-weight:700;color:var(--navy)}
+.theme-n{font-size:9.5px;color:var(--mu);font-weight:600;flex-shrink:0;margin-left:auto;margin-right:8px}
+.theme-pct{font-size:13px;font-weight:800;color:var(--navy);flex-shrink:0}
+.theme-track{height:10px;background:var(--s2);border-radius:5px;overflow:hidden}
+.theme-bar{height:100%;border-radius:0 5px 5px 0}
+
+.insights{margin-top:16px;padding-top:14px;border-top:1px solid var(--br)}
+.insights-title{font-size:9.5px;letter-spacing:1.2px;text-transform:uppercase;color:var(--mu);font-weight:700;margin-bottom:8px}
+.insights ul{list-style:none;display:flex;flex-direction:column;gap:7px}
+.insights li{font-size:11.5px;line-height:1.45;color:var(--navy);padding-left:14px;position:relative}
+.insights li::before{content:'';position:absolute;left:0;top:6px;width:6px;height:6px;border-radius:50%;background:var(--orange)}
+
+.quote-box{margin-top:14px;background:var(--s2);border-left:3px solid var(--orange);border-radius:0 8px 8px 0;padding:12px 14px}
+.quote-label{font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--mu);font-weight:700;margin-bottom:8px}
+.quote-box p{font-size:11.5px;font-style:italic;color:var(--navy);line-height:1.5;margin-bottom:8px}
+.quote-box p:last-child{margin-bottom:0}
+.quote-box p::before{content:'“'}
+.quote-box p::after{content:'”'}
 
 /* FOOTER */
 .ftr{background:var(--s1);border-top:1px solid var(--br);padding:10px 24px;text-align:center;font-size:10px;color:var(--mu);font-weight:600;flex-shrink:0}
 </style>
 </head>
 <body>
-<div class="slide" style="display:flex;flex-direction:column;min-height:100vh">
+<div class="slide">
 
   <div class="hdr">
     <div class="hdr-left">
@@ -101,13 +118,9 @@ body{display:flex;flex-direction:column;min-height:100vh}
         </div>
         <div class="logo-text"><span class="pwr">pwr</span><span class="gestao">GESTÃO</span></div>
       </div>
-      <div class="hdr-title">NPS Dashboard · Histórico de Satisfação &amp; Indicação · Atualizado Agosto 2026</div>
+      <div class="hdr-title">NPS Dashboard · Histórico de Satisfação &amp; Indicação</div>
     </div>
-    <div class="hdr-right">
-      <div class="leg"><span class="dot" style="background:var(--light)"></span>2024</div>
-      <div class="leg"><span class="dot" style="background:var(--orange)"></span>2025</div>
-      <div class="leg"><span class="dot" style="background:var(--mid)"></span>2026</div>
-    </div>
+    <div class="hdr-badge">Atualizado · Agosto 2026</div>
   </div>
 
   <div class="content">
@@ -142,79 +155,109 @@ body{display:flex;flex-direction:column;min-height:100vh}
     <!-- COL 2 : CHART -->
     <div class="card">
       <div class="ct-row"><div class="ct">Histórico mensal de respostas</div></div>
+      <div class="chart-legend">
+        <div class="chart-legend-item"><span class="chart-legend-key" style="background:var(--light)"></span>2024</div>
+        <div class="chart-legend-item"><span class="chart-legend-key" style="background:var(--orange)"></span>2025</div>
+        <div class="chart-legend-item"><span class="chart-legend-key" style="background:var(--mid)"></span>2026</div>
+      </div>
       <div class="chart-wrap"><canvas id="chartMensal"></canvas></div>
     </div>
 
     <!-- COL 3 -->
     <div class="col3">
-      <div class="card prop-card">
-        <div class="ct-row"><div class="ct">Detalhamento Jan–Ago · Proporção por tipo</div></div>
+      <div class="card">
+        <div class="ct-row"><div class="ct">Detalhamento Jan–Ago · Respostas por tipo</div></div>
+
         <div class="prop-row">
-          <div class="prop-year">2024<span>Jan–Ago</span></div>
+          <div class="prop-year">
+            <span class="dot" style="background:var(--light)"></span>
+            <div class="prop-year-txt"><b>2024</b><small>102 resp.</small></div>
+          </div>
           <div class="prop-vals">
-            <div class="prop-val"><b style="color:var(--light)">82%</b><small>Prom.</small></div>
-            <div class="prop-val"><b>13%</b><small>Neutr.</small></div>
-            <div class="prop-val"><b>5%</b><small>Detrat.</small></div>
+            <div class="prop-val"><b>84</b><small>Prom. · 82%</small></div>
+            <div class="prop-val"><b>13</b><small>Neutr. · 13%</small></div>
+            <div class="prop-val"><b>5</b><small>Detrat. · 5%</small></div>
           </div>
         </div>
+
         <div class="prop-row">
-          <div class="prop-year">2025<span>Jan–Ago</span></div>
+          <div class="prop-year">
+            <span class="dot" style="background:var(--orange)"></span>
+            <div class="prop-year-txt"><b>2025</b><small>91 resp.</small></div>
+          </div>
           <div class="prop-vals">
-            <div class="prop-val"><b style="color:var(--orange)">85%</b><small>Prom.</small></div>
-            <div class="prop-val"><b>12%</b><small>Neutr.</small></div>
-            <div class="prop-val"><b>3%</b><small>Detrat.</small></div>
+            <div class="prop-val"><b>77</b><small>Prom. · 85%</small></div>
+            <div class="prop-val"><b>11</b><small>Neutr. · 12%</small></div>
+            <div class="prop-val"><b>3</b><small>Detrat. · 3%</small></div>
           </div>
         </div>
+
         <div class="prop-row">
-          <div class="prop-year">2026<span>Jan–Ago</span></div>
+          <div class="prop-year">
+            <span class="dot" style="background:var(--mid)"></span>
+            <div class="prop-year-txt"><b>2026</b><small>150 resp.</small></div>
+          </div>
           <div class="prop-vals">
-            <div class="prop-val"><b style="color:var(--mid)">87%</b><small>Prom.</small></div>
-            <div class="prop-val"><b>12%</b><small>Neutr.</small></div>
-            <div class="prop-val"><b>1%</b><small>Detrat.</small></div>
+            <div class="prop-val"><b>130</b><small>Prom. · 87%</small></div>
+            <div class="prop-val"><b>18</b><small>Neutr. · 12%</small></div>
+            <div class="prop-val"><b>2</b><small>Detrat. · 1%</small></div>
           </div>
         </div>
       </div>
 
       <div class="card themes-card">
         <div class="ct-row">
-          <div class="ct">Pontos de melhoria · 2026 · Q5+Q7</div>
+          <div class="ct">Análise dos comentários dos clientes · 2026 · Q5+Q7</div>
           <div class="ct-sub">78 menções · 150 resp.</div>
         </div>
 
         <div class="theme-row">
-          <div class="theme-top"><span class="theme-name">Falta de presença / acompanhamento</span><span class="theme-n">17 menções</span><span class="theme-pct" style="color:var(--mid)">22%</span></div>
+          <div class="theme-top"><span class="theme-name">Falta de presença / acompanhamento</span><span class="theme-n">17 menções</span><span class="theme-pct">22%</span></div>
           <div class="theme-track"><div class="theme-bar" style="width:22%;background:var(--mid)"></div></div>
         </div>
         <div class="theme-row">
-          <div class="theme-top"><span class="theme-name">Turnover / troca de consultores</span><span class="theme-n">16 menções</span><span class="theme-pct" style="color:var(--orange)">21%</span></div>
+          <div class="theme-top"><span class="theme-name">Turnover / troca de consultores</span><span class="theme-n">16 menções</span><span class="theme-pct">21%</span></div>
           <div class="theme-track"><div class="theme-bar" style="width:21%;background:var(--orange)"></div></div>
         </div>
         <div class="theme-row">
-          <div class="theme-top"><span class="theme-name">Atrasos / prazo de entrega</span><span class="theme-n">14 menções</span><span class="theme-pct" style="color:#622000">18%</span></div>
+          <div class="theme-top"><span class="theme-name">Atrasos / prazo de entrega</span><span class="theme-n">14 menções</span><span class="theme-pct">18%</span></div>
           <div class="theme-track"><div class="theme-bar" style="width:18%;background:#622000"></div></div>
         </div>
         <div class="theme-row">
-          <div class="theme-top"><span class="theme-name">Falta de devolutiva / comunicação</span><span class="theme-n">11 menções</span><span class="theme-pct" style="color:#9A3500">14%</span></div>
+          <div class="theme-top"><span class="theme-name">Falta de devolutiva / comunicação</span><span class="theme-n">11 menções</span><span class="theme-pct">14%</span></div>
           <div class="theme-track"><div class="theme-bar" style="width:14%;background:#9A3500"></div></div>
         </div>
         <div class="theme-row">
-          <div class="theme-top"><span class="theme-name">Senioridade / qualidade dos consultores</span><span class="theme-n">7 menções</span><span class="theme-pct" style="color:var(--light)">9%</span></div>
+          <div class="theme-top"><span class="theme-name">Senioridade / qualidade dos consultores</span><span class="theme-n">7 menções</span><span class="theme-pct">9%</span></div>
           <div class="theme-track"><div class="theme-bar" style="width:9%;background:var(--light)"></div></div>
         </div>
         <div class="theme-row">
-          <div class="theme-top"><span class="theme-name">Alinhamento inicial com o negócio</span><span class="theme-n">7 menções</span><span class="theme-pct" style="color:#1d6fbf">9%</span></div>
+          <div class="theme-top"><span class="theme-name">Alinhamento inicial com o negócio</span><span class="theme-n">7 menções</span><span class="theme-pct">9%</span></div>
           <div class="theme-track"><div class="theme-bar" style="width:9%;background:#1d6fbf"></div></div>
         </div>
         <div class="theme-row">
-          <div class="theme-top"><span class="theme-name">Preço / custo elevado</span><span class="theme-n">4 menções</span><span class="theme-pct" style="color:#7c3aed">5%</span></div>
+          <div class="theme-top"><span class="theme-name">Preço / custo elevado</span><span class="theme-n">4 menções</span><span class="theme-pct">5%</span></div>
           <div class="theme-track"><div class="theme-bar" style="width:5%;background:#7c3aed"></div></div>
         </div>
         <div class="theme-row">
-          <div class="theme-top"><span class="theme-name">Encerramento fraco do projeto</span><span class="theme-n">2 menções</span><span class="theme-pct" style="color:var(--mu)">3%</span></div>
+          <div class="theme-top"><span class="theme-name">Encerramento fraco do projeto</span><span class="theme-n">2 menções</span><span class="theme-pct">3%</span></div>
           <div class="theme-track"><div class="theme-bar" style="width:3%;background:var(--mu)"></div></div>
         </div>
 
-        <div class="themes-footer">Base: 150 respostas de 2026 · Q5 e Q7</div>
+        <div class="insights">
+          <div class="insights-title">Leituras adicionais</div>
+          <ul>
+            <li>Turnover e falta de presença juntos somam <b>43%</b> das menções — são queixas de rotina operacional, não de resultado do projeto.</li>
+            <li><b>87%</b> das respostas de 2026 são de promotores (nota ≥9): pontos de melhoria aparecem mesmo em avaliações altas, sinal de cliente engajado dando feedback construtivo, não insatisfeito.</li>
+            <li>Boa parte dos relatos de turnover e de falta de presença pede a mesma coisa — menos troca de consultor sênior e mais contato direto dos sócios. Pode ser tratado como uma única frente de ação.</li>
+          </ul>
+        </div>
+
+        <div class="quote-box">
+          <div class="quote-label">Na fala dos clientes</div>
+          <p>Precisa ter uma pegada contínua dentro das empresas, sinto que no começo é bastante focado e incisivo nas demandas, depois esfria, depois aquece novamente.</p>
+          <p>A rotatividade dos consultores foi alta em nosso projeto, criando dois problemas: acesso à informação sensível e o tempo de aprendizado do novo consultor com o nosso processo, o que impactava o andamento do projeto.</p>
+        </div>
       </div>
     </div>
 
@@ -230,24 +273,85 @@ const d24=[4,19,15,18,6,18,10,12,7,11,7,18];
 const d25=[4,12,12,8,9,9,14,23,26,21,15,15];
 const d26=[15,24,15,24,22,17,17,16,null,null,null,null];
 
+// direct end-of-line labels (value + year), colored to match each series
+const endLabels = {
+  id: 'endLabels',
+  afterDatasetsDraw(chart) {
+    const ctx = chart.ctx;
+    chart.data.datasets.forEach((ds, i) => {
+      const meta = chart.getDatasetMeta(i);
+      if (meta.hidden) return;
+      for (let idx = ds.data.length - 1; idx >= 0; idx--) {
+        if (ds.data[idx] !== null && ds.data[idx] !== undefined) {
+          const pt = meta.data[idx];
+          ctx.save();
+          ctx.textAlign = 'left';
+          ctx.textBaseline = 'middle';
+          ctx.font = '800 12px Segoe UI, Arial, sans-serif';
+          ctx.fillStyle = ds.borderColor;
+          ctx.fillText(String(ds.data[idx]), pt.x + 8, pt.y - 5);
+          ctx.font = '700 9px Segoe UI, Arial, sans-serif';
+          ctx.fillStyle = '#6b7a99';
+          ctx.fillText(ds.label, pt.x + 8, pt.y + 8);
+          ctx.restore();
+          break;
+        }
+      }
+    });
+  }
+};
+
+// vertical crosshair on hover, snapped to the active X position
+const crosshair = {
+  id: 'crosshair',
+  afterDraw(chart) {
+    const active = chart.tooltip?._active;
+    if (active && active.length) {
+      const x = active[0].element.x;
+      const {top, bottom} = chart.scales.y;
+      const ctx = chart.ctx;
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(x, top);
+      ctx.lineTo(x, bottom);
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = '#c3cfe8';
+      ctx.stroke();
+      ctx.restore();
+    }
+  }
+};
+
 new Chart(document.getElementById('chartMensal'), {
   type: 'line',
   data: {
     labels: MESES,
     datasets: [
-      { label:'2024', data:d24, borderColor:'#3C58B4', backgroundColor:'#3C58B4', pointRadius:3, pointBackgroundColor:'#3C58B4', borderWidth:2.5, tension:.35, spanGaps:true },
-      { label:'2025', data:d25, borderColor:'#FF5B00', backgroundColor:'#FF5B00', pointRadius:3, pointBackgroundColor:'#FF5B00', borderWidth:2.5, tension:.35, spanGaps:true },
-      { label:'2026', data:d26, borderColor:'#273A76', backgroundColor:'#273A76', pointRadius:3, pointBackgroundColor:'#273A76', borderWidth:2.5, tension:.35, spanGaps:true }
+      { label:'2024', data:d24, borderColor:'#3C58B4', backgroundColor:'#3C58B4', pointRadius:2.5, pointHoverRadius:5, pointBackgroundColor:'#3C58B4', borderWidth:2, borderDash:[5,3], tension:.35, spanGaps:true },
+      { label:'2025', data:d25, borderColor:'#FF5B00', backgroundColor:'#FF5B00', pointRadius:2.5, pointHoverRadius:5, pointBackgroundColor:'#FF5B00', borderWidth:2, tension:.35, spanGaps:true },
+      { label:'2026', data:d26, borderColor:'#273A76', backgroundColor:'#273A76', pointRadius:2.5, pointHoverRadius:5, pointBackgroundColor:'#273A76', borderWidth:3, tension:.35, spanGaps:true }
     ]
   },
   options: {
     responsive:true, maintainAspectRatio:false,
-    plugins:{ legend:{ display:false }, tooltip:{ mode:'index', intersect:false } },
+    layout:{ padding:{ right:38 } },
+    interaction:{ mode:'index', intersect:false },
+    plugins:{
+      legend:{ display:false },
+      tooltip:{
+        mode:'index', intersect:false,
+        backgroundColor:'#05244F', titleColor:'#ffffff', bodyColor:'#ffffff',
+        borderColor:'rgba(255,255,255,.15)', borderWidth:1, padding:10,
+        boxWidth:14, boxHeight:3,
+        callbacks:{ label: ctx => ` ${ctx.dataset.label}: ${ctx.formattedValue ?? '—'} respostas` }
+      }
+    },
     scales:{
-      y:{ beginAtZero:true, suggestedMax:30, grid:{ color:'#eef1f8' }, ticks:{ color:'#6b7a99', font:{ size:11 } } },
-      x:{ grid:{ display:false }, ticks:{ color:'#6b7a99', font:{ size:11 } } }
+      y:{ beginAtZero:true, suggestedMax:30, grid:{ color:'#eef1f8', lineWidth:1 }, ticks:{ color:'#6b7a99', font:{ size:10 } } },
+      x:{ grid:{ display:false }, ticks:{ color:'#6b7a99', font:{ size:9.5 } } }
     }
-  }
+  },
+  plugins: [crosshair, endLabels]
 });
 </script>
 </body>
